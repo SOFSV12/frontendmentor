@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- displays site properly based on user's device -->
 
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Frontend Mentor | Notifications page</title>
 
     <style>
       * {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
 
       :root {
@@ -28,7 +35,7 @@
         --neutral-light-grayish-blue-2: hsl(205, 33%, 90%);
         --neutral-grayish-blue: hsl(219, 14%, 63%);
         --neutral-dark-grayish-blue: hsl(219, 12%, 42%);
-        --neutral-very-dark-lue: hsl(224, 21%, 14%)
+        --neutral-very-dark-lue: hsl(224, 21%, 14%);
       }
 
       p {
@@ -38,124 +45,245 @@
   </head>
 
   <body class="w-full bg-[var(--neutral-very-light-grayish-blue)]">
-    <main class="w-full">
-      <div class="w-full md:absolute md:mb-5 md:mt-5 md:left-0 bg-white md:right-0 md:mx-auto px-5 md:w-3/4 lg:w-2/5 md:shadow-xl md:shadow-gray-300 md:rounded-md">
+    <main class="w-full md:flex md:items-center md:justify-center md:my-10">
+      <div
+        class="w-full px-5 md:w-3/5 py-1.5 lg:w-2/5 md:shadow-xl md:shadow-gray-300 md:rounded-md bg-white"
+      >
         <div class="w-full flex items-center justify-between h-14">
           <div class="flex items-center justify-start w-full space-x-2">
             <p class="font-bold">Notifications</p>
-            <div class="px-2 rounded-md text-white bg-[var(--primary-blue)]">3</div>
+            <div
+              id="unreadCount"
+              class="px-2 rounded-md text-white bg-[var(--primary-blue)]"
+            >
+              3
+            </div>
           </div>
 
           <div class="w-full items-center justify-end flex">
-            <button class="text-sm" style="color: var(--neutral-grayish-blue);" type="button">Mark all as read</button>
+            <button
+              class="text-sm cursor-pointer"
+              id="markall"
+              style="color: var(--neutral-grayish-blue)"
+              type="button"
+            >
+              <span class="hover:text-[var(--primary-blue)]"
+                >Mark all as read</span
+              >
+            </button>
           </div>
         </div>
 
         <div class="w-full block space-y-2">
           <div
-            class="w-full flex flex-row items-start justify-between bg-[var(--neutral-very-light-grayish-blue)] py-4 rounded-lg">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-mark-webber.webp" alt="Mark webbber Image">
+            class="w-full flex flex-row items-start justify-between active bg-[var(--neutral-very-light-grayish-blue)] py-4 rounded-lg"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-mark-webber.webp"
+                alt="Mark webbber Image"
+              />
             </div>
-            <div class="w-full flex flex-col items-start justify-start space-y-1">
-              <div class="w-full text-sm inline-block leading-6">
-                <span class="font-bold">Mark Webber</span> reacted to your recent post <span
-                  class="text-sm font-semibold">My
-                  first tournament today!</span>
-                <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div>
+            <div
+              class="w-full flex flex-col items-start justify-start space-y-1"
+            >
+              <div class="w-full text-sm inline leading-6">
+                <span
+                  class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >Mark Webber</span
+                >
+                reacted to your recent post
+                <span
+                  class="text-sm font-semibold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >My first tournament today!</span
+                >
+                <span
+                  class="h-2 w-2 red-dot bg-[var(--primary-red)] inline-block ml-1 rounded-full"
+                ></span>
               </div>
               <div class="text-xs text-gray-400">1m ago</div>
             </div>
           </div>
 
           <div
-            class="w-full flex flex-row items-start justify-between bg-[var(--neutral-very-light-grayish-blue)] py-4 rounded-lg">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-angela-gray.webp" alt="Angela Gray Image">
+            class="w-full flex active flex-row items-start justify-between bg-[var(--neutral-very-light-grayish-blue)] py-4 rounded-lg"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-angela-gray.webp"
+                alt="Angela Gray Image"
+              />
             </div>
-            <div class="w-full flex flex-col items-start justify-start space-y-1">
-              <div class="w-full text-sm inline-block leading-6">
-                <span class="font-bold">Angela Gray</span> followed you
-                <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div>
+            <div
+              class="w-full flex flex-col items-start justify-start space-y-1"
+            >
+              <div class="w-full text-sm inline leading-6">
+                <span
+                  class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >Angela Gray</span
+                >
+                followed you
+                <span
+                  class="h-2 w-2 red-dot bg-[var(--primary-red)] inline-block ml-1 rounded-full"
+                ></span>
               </div>
               <div class="text-xs text-gray-400">5m ago</div>
             </div>
           </div>
 
-
           <div
-            class="w-full flex flex-row items-start justify-between bg-[var(--neutral-very-light-grayish-blue)] py-4 rounded-lg">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-jacob-thompson.webp" alt="Jacob Thompson Image">
+            class="w-full active flex flex-row items-start justify-between bg-[var(--neutral-very-light-grayish-blue)] py-4 rounded-lg"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-jacob-thompson.webp"
+                alt="Jacob Thompson Image"
+              />
             </div>
-            <div class="w-full flex flex-col items-start justify-start space-y-1">
-              <div class="w-full text-sm inline-block leading-6">
-                <span class="font-bold">Jacob Thompson</span> has joined your group Chess Club
-                <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div>
+            <div
+              class="w-full flex flex-col items-start justify-start space-y-1"
+            >
+              <div class="w-full text-sm inline leading-6">
+                <span
+                  class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >Jacob Thompson</span
+                >
+                has joined your group
+                <span
+                  class="hover:text-[var(--primary-blue)] cursor-pointer font-bold"
+                  >Chess Club</span
+                >
+                <span
+                  class="h-2 red-dot w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"
+                ></span>
               </div>
               <div class="text-xs text-gray-400">1 day ago</div>
             </div>
           </div>
 
-          <div class="w-full flex flex-row items-start justify-between bg-transparent py-4">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-rizky-hasanuddin.webp" alt="Rizky Hasanuddin Image">
+          <div
+            class="w-full flex flex-row items-start justify-between bg-transparent py-4"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-rizky-hasanuddin.webp"
+                alt="Rizky Hasanuddin Image"
+              />
             </div>
-            <div class="w-full flex flex-col items-start justify-start space-y-1">
+            <div
+              class="w-full flex flex-col items-start justify-start space-y-1"
+            >
               <div class="w-full text-sm inline-block leading-6">
-                <span class="font-bold">Rizky Hasanuddin</span> sent you a private message
+                <span
+                  class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >Rizky Hasanuddin</span
+                >
+                sent you a private message
                 <!-- <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div> -->
               </div>
               <div class="text-xs text-gray-400">5 day ago</div>
 
-              <div class="w-full border border-gray-100 p-2 leading-6 text-sm text-gray-500 rounded">
-                Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and
-                I'm already having lots of fun and improving my game.
+              <div
+                class="w-full cursor-pointer hover:bg-[var(--neutral-very-light-grayish-blue)] border border-gray-100 p-2 leading-6 text-sm text-gray-500 rounded"
+              >
+                Hello, thanks for setting up the Chess Club. I've been a member
+                for a few weeks now and I'm already having lots of fun and
+                improving my game.
               </div>
             </div>
           </div>
 
-          <div class="w-full flex flex-row items-start justify-between py-4 rounded-lg">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-kimberly-smith.webp" alt="Kimberly Smith Image">
+          <div
+            class="w-full flex flex-row items-start justify-between py-4 rounded-lg"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-kimberly-smith.webp"
+                alt="Kimberly Smith Image"
+              />
             </div>
             <div class="w-full flex flex-row items-start justify-start">
-              <div class="w-full flex flex-col items-start justify-start space-y-1">
+              <div
+                class="w-full flex flex-col items-start justify-start space-y-1"
+              >
                 <div class="w-full text-sm inline-block leading-6">
-                  <span class="font-bold">Kimberly Smith</span> commented on your picture
+                  <span
+                    class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                    >Kimberly Smith</span
+                  >
+                  commented on your picture
                   <!-- <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div> -->
                 </div>
                 <div class="text-xs text-gray-400">1 week ago</div>
               </div>
               <div class="w-2/5 flex flex-row items-start justify-end">
-                <div><img src="./assets/images/image-chess.webp" alt="commented chess image" class="h-12 rounded-lg">
+                <div
+                  class="h-12 hover:bg-[var(--neutral-very-light-grayish-blue)] p-1 rounded-lg cursor-pointer"
+                >
+                  <img
+                    src="./assets/images/image-chess.webp"
+                    alt="commented chess image"
+                    class="h-full rounded-lg"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="w-full flex flex-row items-start justify-between py-4 rounded-lg">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-nathan-peterson.webp" alt="Nathan Peterson Image">
+          <div
+            class="w-full flex flex-row items-start justify-between py-4 rounded-lg"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-nathan-peterson.webp"
+                alt="Nathan Peterson Image"
+              />
             </div>
-            <div class="w-full flex flex-col items-start justify-start space-y-1">
+            <div
+              class="w-full flex flex-col items-start justify-start space-y-1"
+            >
               <div class="w-full text-sm inline-block leading-6">
-                <span class="font-bold">Nathan Peterson</span> reacted to your recent post 5 end-game strategies to
-                increase your win rate
+                <span
+                  class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >Nathan Peterson</span
+                >
+                reacted to your recent post 5 end-game strategies to increase
+                your win rate
                 <!-- <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div> -->
               </div>
               <div class="text-xs text-gray-400">2 weeks ago</div>
             </div>
           </div>
 
-          <div class="w-full flex flex-row items-start justify-between py-4 rounded-lg">
-            <div class="w-1/4 flex flex-row items-start justify-center">
-              <img class="h-12" src="./assets/images/avatar-anna-kim.webp" alt="Anna Kim Image">
+          <div
+            class="w-full flex flex-row items-start justify-between py-4 rounded-lg"
+          >
+            <div class="w-1/5 flex flex-row items-start justify-center">
+              <img
+                class="h-12"
+                src="./assets/images/avatar-anna-kim.webp"
+                alt="Anna Kim Image"
+              />
             </div>
-            <div class="w-full flex flex-col items-start justify-start space-y-1">
+            <div
+              class="w-full flex flex-col items-start justify-start space-y-1"
+            >
               <div class="w-full text-sm inline-block leading-6">
-                <span class="font-bold">Anna Kim</span> left the group <span
-                  class="text-[var(--primary-blue)] font-bold">Chess Club</span>
+                <span
+                  class="font-bold hover:text-[var(--primary-blue)] cursor-pointer"
+                  >Anna Kim</span
+                >
+                left the group
+                <span
+                  class="text-[var(--primary-blue)] font-bold cursor-pointer hover:text-[var(--primary-blue)]"
+                  >Chess Club</span
+                >
                 <!-- <div class="h-2 w-2 bg-[var(--primary-red)] inline-block ml-1 rounded-full"></div> -->
               </div>
               <div class="text-xs text-gray-400">2 weeks ago</div>
@@ -164,6 +292,24 @@
         </div>
       </div>
     </main>
-  </body>
 
+    <script>
+      const unread = document.querySelectorAll(".active");
+      const markAll = document.querySelector("#markall");
+
+      const unreadCount = document.querySelector("#unreadCount");
+      unreadCount.innerHTML = unread.length;
+
+      markAll.addEventListener("click", function () {
+        unread.forEach((comment) => {
+          comment.classList.remove("active");
+          comment.classList.remove(
+            "bg-[var(--neutral-very-light-grayish-blue)]"
+          );
+          const dot = comment.querySelector(".red-dot");
+          dot.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
 </html>
