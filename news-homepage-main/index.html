@@ -1,60 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | News homepage</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 
-  Home
-  New
-  Popular
-  Trending
-  Categories
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Frontend Mentor | News homepage</title>
+    <style>
+      * {
+        font-family: 'Inter', sans-serif !important;
+      }
 
-  The Bright Future of Web 3.0?
+      p {
+        font-size: 15px;
+      }
 
-  We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. 
-  But is it really fulfilling its promise?
+      :root {
+        --primary-soft-orange: hsl(35, 77%, 62%);
+        --primary-soft-red: hsl(5, 85%, 63%);
+        --nuetral-off-white: hsl(36, 100%, 99%);
+        --neutral-grayish-blue: hsl(233, 8%, 79%);
+        --neutral-dark-grayish-blue: hsl(236, 13%, 42%);
+        --neutral-very-dark-blue: hsl(240, 100%, 5%)
+      }
+    </style>
+  </head>
 
-  Read more
+  <body class="md:w-9/12 md:mx-auto w-full relative z-0">
+    <header class="w-full h-16 md:px-0 p-5 z-10 flex flex-row items-center justify-center">
+      <div class="w-full">
+        <div>
+          <img src="./assets/images/logo.svg" alt="logo image" class="w-12 md:w-auto">
+        </div>
+      </div>
 
-  New 
+      <div class="w-full flex flex-row items-end justify-end">
+        <button type="button" id="icon-menu" class="md:hidden">
+          <img src="./assets/images/icon-menu.svg" alt="Button Menu">
+        </button>
 
-  Hydrogen VS Electric Cars
-  Will hydrogen-fueled cars ever catch up to EVs?
+        <div
+          class="hidden w-screen h-screen absolute md:hidden bg-gray-900/40 flex flex-col justify-end items-end top-0 left-0"
+          id="mobile-headers">
+          <div class="px-5 bg-white opacity-100 shadow-lg w-7/12 h-full">
+            <div class="h-24 flex w-full items-center justify-end">
+              <button type="button" id="icon-menu-close">
+                <img src="./assets/images/icon-menu-close.svg" alt="Button Menu Close">
+              </button>
+            </div>
 
-  The Downsides of AI Artistry
-  What are the possible adverse effects of on-demand AI image generation?
+            <div class="w-full pt-6">
+              <ul class="w-full">
+                <li class="capitalize w-full h-10">
+                  <a class="w-full" href="/home">
+                    <div class="w-full">Home</div>
+                  </a>
+                </li>
 
-  Is VC Funding Drying Up?
-  Private funding by VC firms is down 50% YOY. We take a look at what that means.
+                <li class="capitalize w-full h-10">
+                  <a class="w-full" href="/new">
+                    <div class="w-full">New</div>
+                  </a>
+                </li>
 
-  01
-  Reviving Retro PCs
-  What happens when old PCs are given modern upgrades?
+                <li class="capitalize w-full h-10">
+                  <a class="w-full" href="popular">
+                    <div class="w-full">Popular</div>
+                  </a>
+                </li>
 
-  02
-  Top 10 Laptops of 2022
-  Our best picks for various needs and budgets.
+                <li class="capitalize w-full h-10">
+                  <a class="w-full" href="/trending">
+                    <div class="w-full">Trending</div>
+                  </a>
+                </li>
 
-  03
-  The Growth of Gaming
-  How the pandemic has sparked fresh opportunities.
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+                <li class="capitalize w-full h-10">
+                  <a class="w-full" href="/categories">
+                    <div class="w-full">Categories</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <nav class="w-full hidden md:flex">
+          <ul class="w-full flex items-center justify-end space-x-5">
+            <li><a class="hover:text-[var(--primary-soft-red)]" href="/home">Home</a></li>
+            <li><a class="hover:text-[var(--primary-soft-red)]" href="/new">New</a></li>
+            <li><a class="hover:text-[var(--primary-soft-red)]" href="/popular">Popular</a></li>
+            <li><a class="hover:text-[var(--primary-soft-red)]" href="/trending">Trending</a></li>
+            <li><a class="hover:text-[var(--primary-soft-red)]" href="/categories">Categories</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+
+    <main class="w-full md:px-0 px-5 space-y-10">
+      <div
+        class="w-full md:flex-row md:space-x-5 flex flex-col md:space-y-0 space-y-5 items-center md:items-start justify-center md:justify-start">
+        <div class="w-full space-y-5">
+          <div class="w-full">
+            <img class="md:hidden" src="./assets/images/image-web-3-mobile.jpg" alt="web">
+            <img class="hidden md:block" src="./assets/images/image-web-3-desktop.jpg" alt="web">
+          </div>
+          <div class="w-full md:flex">
+            <div class="md:w-1/2">
+              <h1 class="text-3xl md:text-4xl font-bold">The Bright Future of Web 3.0?</h1>
+            </div>
+            <div class="w-full space-y-5">
+              <p class="text-gray-800">We dive into the next evolution of the web that claims to put the
+                power of the platforms back into the hands of the
+                people.But is it really fulfilling its promise?</p>
+              <button type="button"
+                class="bg-red-500 hover:bg-[var(--neutral-very-dark-blue)] text-white py-2.5 text-sm uppercase tracking-wider px-6">
+                Read more
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-2/5 space-y-5 text-white p-5 md:h-full"
+          style="background-color: var(--neutral-very-dark-blue);">
+          <h1 class="font-bold text-lg" style="color:var(--primary-soft-orange);">New</h1>
+          <div class="w-full py-4 border-gray-500 border-b">
+            <a href="#" class="hover:text-[var(--primary-soft-orange)]">
+              <h2>Hydrogen VS Electric Cars</h2>
+            </a>
+            <p class="text-sm text-gray-400">Will hydrogen-fueled cars ever catch up to EVs?</p>
+          </div>
+          <div class="w-full py-4 border-gray-500 border-b">
+            <a href="#" class="hover:text-[var(--primary-soft-orange)]">
+              <h2>The Downsides of AI Artistry</h2>
+            </a>
+            <p class="text-sm text-gray-400">What are the possible adverse effects of on-demand AI image generation?</p>
+          </div>
+          <div class="w-full py-4">
+            <a href="#" class="hover:text-[var(--primary-soft-orange)]">
+              <h2>Is VC Funding Drying Up?</h2>
+            </a>
+            <p class="text-sm text-gray-400">Private funding by VC firms is down 50% YOY. We take a look at what that
+              means.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full md:flex md:flex-row md:space-y-0 space-y-5 md:justify-between md:items-center">
+        <div class="w-full flex flex-row items-start">
+          <div class="w-1/2">
+            <img src="./assets/images/image-retro-pcs.jpg" alt="Retro Picture">
+          </div>
+          <div class="w-full flex flex-col justify-start items-start pl-5">
+            <h1 class="font-bold text-4xl" style="color: var(--neutral-grayish-blue);">01</h1>
+            <a href="#" class="hover:text-[var(--primary-soft-red)] font-bold text-lg">Reviving Retro PCs</a>
+            <p class="text-gray-700 text-sm">What happens when old PCs are given modern upgrades?</p>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-row items-start">
+          <div class="w-1/2">
+            <img src="./assets/images/image-top-laptops.jpg" alt="Top Laptops Picture">
+          </div>
+          <div class="w-full flex flex-col justify-start items-start pl-5">
+            <h1 class="font-bold text-4xl" style="color: var(--neutral-grayish-blue);">02</h1>
+            <a href="#" class="hover:text-[var(--primary-soft-red)] font-bold text-lg">Top 10 Laptops of 2022</a>
+            <p class="text-gray-700 text-sm">Our best picks for various needs and budgets.</p>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-row items-start">
+          <div class="w-1/2">
+            <img src="./assets/images/image-gaming-growth.jpg" alt="Gaming Growth Picture">
+          </div>
+          <div class="w-full flex flex-col justify-start items-start pl-5">
+            <h1 class="font-bold text-4xl" style="color: var(--neutral-grayish-blue);">02</h1>
+            <a href="#" class="hover:text-[var(--primary-soft-red)] font-bold text-lg">The Growth of Gaming</a>
+            <p class="text-gray-700 text-sm">How the pandemic has sparked fresh opportunities.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </body>
+  <script>
+    const mobileHeaders = document.querySelector("#mobile-headers")
+    const iconMenu = document.querySelector("#icon-menu")
+
+    iconMenu.addEventListener("click", function () {
+      mobileHeaders.classList.remove("hidden")
+
+      const iconMenuClose = document.querySelector("#icon-menu-close")
+      iconMenuClose.addEventListener("click", function () {
+        mobileHeaders.classList.add("hidden")
+      })
+    })
+  </script>
+
 </html>
