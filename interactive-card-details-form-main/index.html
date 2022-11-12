@@ -1,51 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Frontend Mentor | Interactive card details form</title>
+    <style>
+      * {
+        font-family: "Space Grotesk", sans-serif !important;
+      }
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive card details form</title>
+      input[type="number"],
+      input[type="text"] {
+        outline: none;
+      }
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+      input[type="number"]:focus {
+        border-color: hsl(249, 99%, 64%);
+      }
+      input[type="text"]:focus {
+        border-color: hsl(249, 99%, 64%);
+      }
 
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
+      /* input[type="text"]:invalid {
+        border-color: var(--primary-red);
+      }
 
-  000
+      input[type="number"]:invalid {
+        border-color: var(--primary-red);
+      } */
 
-  Cardholder Name
-  e.g. Jane Appleseed
+      :root {
+        /* active input border */
+        --primary-linear-gradient: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
+        /* input errors */
+        --primary-red: hsl(0, 100%, 66%);
 
-  Card Number
-  e.g. 1234 5678 9123 0000
+        --neutral-white: hsl(0, 0%, 100%);
+        --neutral-light-grayish-violet: hsl(270, 3%, 87%);
+        --neutral-dark-grayish-violet: hsl(279, 6%, 55%);
+        --neutral-very-dark-violet: hsl(278, 68%, 11%);
+      }
 
-  Exp. Date (MM/YY)
-  MM
-  YY
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-  CVC
-  e.g. 123
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
 
-  Confirm
+      .front {
+        width: 18rem;
+        max-width: 18rem;
+      }
 
-  <!-- Completed state start -->
+      #main {
+        background-image: url("./images/bg-main-mobile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
 
-  Thank you!
-  We've added your card details
-  Continue
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+      @media screen and (min-width: 768px) {
+        #main {
+          background-image: url("./images/bg-main-desktop.png");
+        }
+
+        .front {
+          width: 22rem;
+          max-width: 22rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="h-screen">
+    <main
+      class="w-full flex flex-col items-start justify-start md:flex-row h-full"
+    >
+      <div
+        class="w-full md:w-2/5 md:h-full max-h-52 h-52 flex items-center relative md:max-h-full"
+        id="main"
+      >
+        <div class="w-11/12 mx-auto md:absolute md:right-0 md:-mr-44 md:mt-64">
+          <div class="relative w-full">
+            <div class="w-full flex items-center justify-end">
+              <img
+                src="./images/bg-card-back.png"
+                alt="Card Back Image"
+                class="h-32 max-h-32 md:h-48 md:max-h-48 md:shadow-lg md:shadow-gray-800/30 rounded-md"
+              />
+            </div>
+            <div
+              class="absolute inset-0 z-10 flex items-center justify-end h-32 w-full max-h-32 md:h-48 md:max-h-48"
+            >
+              <div class="w-full flex items-center justify-end">
+                <div
+                  class="mr-10 text-xs font-light"
+                  style="color: var(--neutral-white)"
+                >
+                  000
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-0 md:bottom-1/2 ml-5 left-0 md:left-1/2 md:-ml-16 -mb-14 md:mb-0 z-20 w-full overflow-hidden front"
+        >
+          <div class="w-full relative shadow-lg shadow-gray-600">
+            <div class="w-full flex items-center justify-end">
+              <img
+                src="./images/bg-card-front.png"
+                alt="Card Front Image"
+                class="h-36 max-h-36 md:h-48 md:max-h-48 md:shadow-lg md:shadow-gray-500/50 rounded-md front"
+              />
+            </div>
+            <div
+              class="absolute text-white inset-0 block py-2 md:py-3 px-4 h-36 w-full space-y-5 md:space-y-10 max-h-36 md:h-48 md:max-h-48"
+            >
+              <div
+                class="w-full flex flex-row items-center space-x-2 justify-start"
+              >
+                <div class="h-10 w-10 bg-white rounded-full"></div>
+                <div
+                  class="h-5 w-5 bg-transparent border border-white rounded-full"
+                ></div>
+              </div>
+              <div class="w-full space-y-3 block">
+                <div
+                  class="flex flex-row text-[var(--neutral-white)] items-center w-full justify-between"
+                >
+                  <span class="tracking-wider">0000</span>
+                  <span class="tracking-wider">0000</span>
+                  <span class="tracking-wider">0000</span>
+                  <span class="tracking-wider">0000</span>
+                </div>
+                <div
+                  class="w-full text-xs tracking-widest flex items-center justify-between text-[var(--neutral-white)]"
+                >
+                  <div class="uppercase">Jane Appleseed</div>
+                  <div>00/00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col px-5 w-full items-center justify-start md:justify-center h-full"
+      >
+        <form
+          action="#"
+          class="w-full md:w-5/12 md:mx-auto space-y-7 md:space-y-10 mt-24 md:mt-0 text-sm"
+        >
+          <div class="w-full flex flex-col space-y-2">
+            <label
+              class="uppercase text-sm tracking-wider"
+              for="cardholder-name"
+              >Cardholder Name</label
+            >
+            <input
+              class="border border-gray-300 rounded px-4 py-2"
+              type="text"
+              name="cardholder"
+              id="cardholder-name"
+              required
+              placeholder="e.g. Jane Appleseed"
+            />
+          </div>
+
+          <div class="w-full flex flex-col space-y-2">
+            <label class="uppercase text-sm tracking-wider" for="card-number"
+              >Card Number</label
+            >
+            <input
+              class="border border-gray-300 rounded px-4 py-2"
+              type="text"
+              name="card-number"
+              id="card-number"
+              required
+              placeholder="e.g. 1234 5678 9123 0000"
+            />
+            <span id="card-number-error" class="hidden text-red-400">Wrong format, numbers only</span>
+          </div>
+
+          <div class="w-full flex flex-row items-center justify-start text-sm">
+            <div class="w-full flex flex-col space-y-2">
+              <div class="w-full uppercase tracking-wider">
+                Exp. Date (MM/YY)
+              </div>
+              <div
+                class="flex flex-row items-center justify-center w-full space-x-2"
+              >
+                <label for="month" class="w-full">
+                  <input
+                    class="border border-gray-300 rounded px-3 py-2 w-full"
+                    type="number"
+                    name="month"
+                    id="month"
+                    required
+                    placeholder="MM"
+                  />
+                </label>
+
+                <label for="year" class="w-full">
+                  <input
+                    class="border border-gray-300 rounded px-3 py-2 w-full"
+                    type="number"
+                    name="year"
+                    id="year"
+                    required
+                    placeholder="YY"
+                  />
+                </label>
+              </div>
+              <span id="month-year-error" class="hidden text-red-400">can't be blank</span>
+            </div>
+            <div
+              class="w-11/12 text-sm flex flex-col items-start justify-start space-y-2 pl-4"
+            >
+              <label class="uppercase text-sm tracking-wider" for="cvc">
+                CVC
+              </label>
+              <input
+                class="border border-gray-300 rounded px-3 py-2 w-full"
+                type="text"
+                name="cvc"
+                id="cvc"
+                required
+                placeholder="e.g. 123"
+              />
+              <span id="cvc-error" class="hidden text-red-400">can't be blank</span>
+            </div>
+          </div>
+
+          <div class="w-full">
+            <input
+              class="py-3 cursor-pointer bg-[var(--neutral-very-dark-violet)] text-white w-full rounded capitalize tracking-wider"
+              type="submit"
+              value="confirm"
+              title="submit payments"
+            />
+          </div>
+        </form>
+
+        <div
+          class="hidden w-full space-y-10 mt-20 flex flex-col items-center justify-center text-center"
+        >
+          <div>
+            <img src="./images/icon-complete.svg" alt="Icon for Completion" />
+          </div>
+
+          <div class="w-full space-y-3">
+            <h1 class="uppercase tracking-wider text-2xl">Thank You!</h1>
+            <p class="text-[var(--neutral-dark-grayish-violet)]">
+              We've added your card details
+            </p>
+          </div>
+
+          <div class="w-full">
+            <button
+              type="button"
+              class="text-center bg-[var(--neutral-very-dark-violet)] text-white py-4 w-full rounded-md tracking-widest"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      const cvc = document.querySelector("#cvc")
+      const form = document.querySelector("form")
+      form.addEventListener("submit", function() {
+        
+      })
+    </script>
+  </body>
 </html>
