@@ -144,6 +144,7 @@
               </div>
               <div class="w-full space-y-3 block">
                 <div
+                id="card-number-front"
                   class="flex flex-row text-[var(--neutral-white)] items-center w-full justify-between"
                 >
                   <span class="tracking-wider">0000</span>
@@ -154,7 +155,7 @@
                 <div
                   class="w-full text-xs tracking-widest flex items-center justify-between text-[var(--neutral-white)]"
                 >
-                  <div class="uppercase">Jane Appleseed</div>
+                  <div id="card-holder-name-front" class="uppercase">Jane Appleseed</div>
                   <div>00/00</div>
                 </div>
               </div>
@@ -167,7 +168,8 @@
         class="flex flex-col px-5 w-full items-center justify-start md:justify-center h-full"
       >
         <form
-          action="#"
+          action="/interactive-card-details-form-main/index.html"
+          method="post"
           class="w-full md:w-5/12 md:mx-auto space-y-7 md:space-y-10 mt-24 md:mt-0 text-sm"
         >
           <div class="w-full flex flex-col space-y-2">
@@ -180,10 +182,17 @@
               class="border border-gray-300 rounded px-4 py-2"
               type="text"
               name="cardholder"
-              id="cardholder-name"
               required
+              onchange="changeCardHolderName"
+              id="cardholder-name"
               placeholder="e.g. Jane Appleseed"
             />
+            <div
+              id="cardholder-name-error"
+              class="hidden text-[var(--primary-red)] text-sm"
+            >
+              Please input the name
+            </div>
           </div>
 
           <div class="w-full flex flex-col space-y-2">
@@ -196,9 +205,12 @@
               name="card-number"
               id="card-number"
               required
+              onchange="changeCardNumberName"
               placeholder="e.g. 1234 5678 9123 0000"
             />
-            <span id="card-number-error" class="hidden text-red-400">Wrong format, numbers only</span>
+            <span id="card-number-error" class="hidden text-sm text-red-400"
+              >Wrong format, numbers only</span
+            >
           </div>
 
           <div class="w-full flex flex-row items-center justify-start text-sm">
@@ -215,6 +227,8 @@
                     type="number"
                     name="month"
                     id="month"
+                    min="1"
+                    max="12"
                     required
                     placeholder="MM"
                   />
@@ -231,7 +245,9 @@
                   />
                 </label>
               </div>
-              <span id="month-year-error" class="hidden text-red-400">can't be blank</span>
+              <span id="month-year-error" class="hidden text-red-400"
+                >can't be blank</span
+              >
             </div>
             <div
               class="w-11/12 text-sm flex flex-col items-start justify-start space-y-2 pl-4"
@@ -247,7 +263,9 @@
                 required
                 placeholder="e.g. 123"
               />
-              <span id="cvc-error" class="hidden text-red-400">can't be blank</span>
+              <span id="cvc-error" class="hidden text-red-400"
+                >can't be blank</span
+              >
             </div>
           </div>
 
@@ -262,6 +280,7 @@
         </form>
 
         <div
+          id="completion"
           class="hidden w-full space-y-10 mt-20 flex flex-col items-center justify-center text-center"
         >
           <div>
@@ -278,6 +297,7 @@
           <div class="w-full">
             <button
               type="button"
+              onclick="completed()"
               class="text-center bg-[var(--neutral-very-dark-violet)] text-white py-4 w-full rounded-md tracking-widest"
             >
               Continue
@@ -287,11 +307,150 @@
       </div>
     </main>
     <script>
-      const cvc = document.querySelector("#cvc")
-      const form = document.querySelector("form")
-      form.addEventListener("submit", function() {
+      const cvc = document.querySelector("#cvc");
+      
+      const form = document.querySelector("form");
+      const completion = document.querySelector("#completion");
+      const cardHolderName = document.querySelector("#cardholder-name");
+      const cardNumber = document.querySelector("#card-number");
+      const cardMonth = document.querySelector("#month");
+      const cardYear = document.querySelector("#year");
+      let hasError = false;
+
+      function changeCardHolderName(e) {
+        const v = document.querySelector("#card-holder-name-front")
+        v.value = e.target.value
+        if (e.target.value === "") v.value = "Jane Appleseed"
+      }
+      // function changeCardNumberName(e) {
+      //   const v = document.querySelector("#card-number-front")
+      //   v.value = e.target.value
+      //   if (e.target.value === "") {
+      //     v.innerHTML = `
+      //    <span class="tracking-wider">${e.target.value.slice(0,4) ? "0000"}</span>
+      //    <span class="tracking-wider">0000</span>
+      //    <span class="tracking-wider">0000</span>
+      //    <span class="tracking-wider">0000</span> 
+      //     `
+      //   }
+      // }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // e.stopPropagation();
+
+        cardHolderNameValidation();
+        cardNumberValidation();
+        cardMonthValidation();
+        cardYearValidation();
+        cardCvcValidation();
+
+        if (hasError) return;
+        form.classList.add("hidden");
+        completion.classList.remove("hidden");
+        form.reset()
+      });
+
+      function completed() {
+        form.classList.remove("hidden");
+        completion.classList.add("hidden");
+      }
+
+      function cardHolderNameValidation() {
+        const cardHolderNameError = document.querySelector(
+          "#cardholder-name-error"
+        );
+        showHide(cardHolderName, cardHolderNameError);
+      }
+
+      function cardNumberValidation() {
+        const cardNumberError = document.querySelector("#card-number-error");
+        showHide(cardNumber, cardNumberError);
+        if (cardNumber.classList.contains("hidden") === false) {
+          const value = cardNumber.value;
+          if (value.length < 16) {
+            cardNumberError.classList.add("block");
+            cardNumberError.classList.remove("hidden");
+            cardNumberError.innerHTML = "16 numbers Required";
+            cardNumber.setAttribute("style", "border-color: var(--primary-red) !important");
+            hasError = true
+          } else {
+            hasError = false
+          }
+          let v = Array.from(value).every((value) => value >= 0);
+          if (v === false) {
+            cardNumberError.classList.add("block");
+            cardNumberError.classList.remove("hidden");
+            cardNumber.setAttribute("style", "border-color: var(--primary-red) !important");
+            hasError = true
+          } else {
+            hasError = false
+          }
+        }
+      }
+
+      function showHide(mainElement, element) {
+        if (mainElement.value === "") {
+          element.classList.add("block");
+          element.classList.remove("hidden");
+          mainElement.setAttribute("style", "border-color: var(--primary-red) !important");
+          hasError = true
+        } else {
+          element.classList.add("hidden");
+          element.classList.remove("block");
+          mainElement.removeAttribute("style")
+          hasError = false
+        }
+      }
+
+      function cardMonthValidation() {
+        const dateError = document.querySelector("#month-year-error");
+        showHide(cardMonth, dateError);
+        numbersValidate(cardMonth.value, 1, 12, dateError);
+      }
+
+      function cardYearValidation() {
+        const dateError = document.querySelector("#month-year-error");
+        showHide(cardYear, dateError);
         
-      })
+        if (+cardYear.value <= 9) {
+          dateError.classList.add("block");
+          dateError.classList.remove("hidden");
+          cardYear.setAttribute("style", "border-color: var(--primary-red) !important");
+          hasError = true
+        } else {
+          hasError = false
+        }
+      }
+
+      function cardCvcValidation() {
+        const cvcError = document.querySelector("#cvc-error");
+        showHide(cvc, cvcError);
+        if (cvc.value.length < 3) {
+          cvcError.classList.add("block");
+          cvcError.classList.remove("hidden");
+          cvcError.innerHTML = "Too short - 3 numbers"
+          cvc.setAttribute("style", "border-color: var(--primary-red) !important");
+          hasError = true
+        } else {
+          cvcError.classList.add("hidden");
+          cvcError.classList.remove("block");
+          cvc.removeAttribute("style")
+          hasError = false
+        }
+      }
+
+      function numbersValidate(value, min, max, element) {
+        if (value < min || value > max) {
+          element.classList.add("block");
+          element.classList.remove("hidden");
+          hasError = true
+        } else {
+          element.classList.add("hidden");
+          element.classList.remove("block");
+          hasError = false
+        }
+      }
     </script>
   </body>
 </html>
